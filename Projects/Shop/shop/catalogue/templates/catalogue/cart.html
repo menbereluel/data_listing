@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
+    <a href="{% url 'product_list' %}" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6">
+      &#8592;
+      <span class="ml-2">Back to Home</span>
+    </a>
+
+    <h1 class="text-3xl font-bold mb-6">Your Cart</h1>
+    
+    {% if cart_items %}
+      <ul>
+        {% for item in cart_items %}
+          <li class="flex justify-between items-center mb-4 border-b pb-4">
+            <div>
+              <h2 class="text-xl font-semibold">{{ item.product.name }}</h2>
+              <p>Quantity: {{ item.quantity }}</p>
+              <p>Price: ${{ item.product.price }}</p>
+              <p>Total: ${{ item.item_total }}</p>
+            </div>
+            <div>
+              <form method="post" action="{% url 'remove_from_cart' item.product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+                  Remove
+                </button>
+              </form>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="text-right font-bold text-lg mt-6">Total Price: ${{ total_price }}</div>
+    {% else %}
+      <p>Your cart is empty.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
