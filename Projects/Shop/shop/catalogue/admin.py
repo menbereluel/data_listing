@@ -1,16 +1,8 @@
-# from django.contrib import admin
-
-
-
-# from .models import Product
-# admin.site.register(Product)
-
-# from .models import Category
-# admin.site.register(Category)
-
-# from .models import Tag
-# admin.site.register(Tag)
-
 from django.contrib import admin
 from .models import Product
-admin.site.register(Product)
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'stock')
+    list_filter = ('category', 'subscription')
+    search_fields = ('name', 'description')
