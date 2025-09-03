@@ -132,6 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = '/catalogue/products/'
+LOGIN_REDIRECT_URL = '/catalogue/products/create'
 
 LOGOUT_REDIRECT_URL = '/'  # Redirect to home page after logout

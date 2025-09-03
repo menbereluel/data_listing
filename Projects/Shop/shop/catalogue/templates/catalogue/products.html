@@ -9,6 +9,7 @@
 <body class="bg-gray-100 p-6">
   <div class="max-w-7xl mx-auto bg-white p-6 rounded">
     <h1 class="text-4xl font-bold mb-6">Fresh products</h1>
+    
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {% for product in products %}
       <li class="rounded p-4 flex flex-col items-center"> 
@@ -25,6 +26,11 @@
       </li>
       {% endfor %}
     </ul>
+   <a href="{% url 'login' %}">
+  <button class="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+    Add Product
+  </button>
+</a>
   </div>
 </body>
 </html>
